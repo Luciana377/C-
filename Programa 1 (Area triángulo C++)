@@ -1,0 +1,13 @@
+// Example program
+#include <stdio.h>
+
+int main()
+{
+ float base, altura, area;
+ printf("Cuanto mide la base \n");
+ scanf("%f", &base);
+ printf("Cuanto mide la altura \n");
+ scanf("%f", &altura);
+ area=(base*altura)/2;
+ printf("El area es %f", area);
+}
