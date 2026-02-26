@@ -1,0 +1,86 @@
+// Proyecto Login (Martha y Luciana)
+//Introducción a la programación
+
+//Se agrega la directiva de procesamiento
+#include <iostream> //Librería para entrada y salida de datos
+#include <string>  //Librería para manejar cadenas de texto
+
+using namespace std;
+//Inicia el programa princial
+int main() {
+
+ 
+  string nombreGuardado = "";
+  string contraseñaGuardada = "";
+  int opcion;
+  
+  do { //Crear el ciclo o acción
+      cout <<"\n===== BIENVENIDO ====="<< endl;
+      cout <<"1. Iniciar sesion"<< endl;
+      cout <<"2. Registrarse "<< endl;
+      cout <<"3. Salir "<< endl;
+      cout <<"Seleccione una opcion: ";
+      cin >> opcion;
+      
+      switch(opcion){
+          
+          //Iniciar sesión
+          case 1: {
+              if(nombreGuardado == ""){
+                  cout << "\nNo hay usuarios registrados.\n";
+                  break; //Salir inmediatamente de switch y evita que se ejecuten otros casos
+              }
+              
+              string nombre, contraseña;
+              int intentos = 0; //Numero de intentos hechos
+              //bool acceso = false; //Identificar si es falso
+              
+              while(intentos <3){ //Límite de intentos
+                  cout <<"Ingrese nombre: "; //Mostrar el mensaje en pantalla
+                  cin >> nombre; //Leer los datos que se escriban como el nombre
+                  cout <<"Ingrese contrasena: ";
+                  cin >> contraseña;
+                  
+                  if(nombre == nombreGuardado && contraseña == contraseñaGuardada){
+                      cout <<"\nAcceso correcto\n";
+                      //acceso = true;
+                      break;
+                  } else {
+                      cout <<"\nDatos incorrectos\n";
+                      intentos++;
+                  }
+              }
+              if(intentos==3){
+              cout <<"\nSe alcanzaron 3 intentos. Regresando a Bienvenidos..."\n";
+              }
+              
+              //if(!acceso){
+                  cout <<"\nSe alcanzaron 3 intentos. Regresando a Bienvenidos...\n";
+              }
+                  break;
+              }
+               //Registro
+              case 2:{
+              cout <<"\n=== REGISTRO ==="<< endl;
+              cout <<"Ingrese nombre: ";
+              cin >> nombreGuardado;
+              cout <<"Ingrese contrasena: ";
+              cin >> contraseñaGuardada;
+              cout <<"\nRegistro exitoso.Regresando a Bienvenidos...\n";
+              break;
+              }
+              
+              //Finalizar programa
+              case 3:
+              cout <<"\nSaliendo del programa...\n";
+              break;
+              
+              default:
+              cout <<"\nOpcion invalida\n"; //Cuando hay error va a mandar mensaje de opción inválida
+          }
+          
+      } while(opcion != 3);
+      
+      return 0; //Fin programa
+  }
+  
