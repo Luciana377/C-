@@ -1,0 +1,107 @@
+// Proyecto Login (Martha y Luciana)
+//Introducción a la programación
+
+//Se agrega la directiva de procesamiento
+#include <iostream> //Librería para entrada y salida de datos
+#include <string>  //Librería para manejar cadenas de texto
+
+using namespace std;
+//Inicia el programa princial
+int main() {
+
+ //Arreglos para almacenar hasta 10 usuarios
+  string nombreGuardado = "";
+  string contraseñaGuardada = "";
+  
+  string usuarios[10];
+  string contraseñas[10];
+  
+  int totalUsuarios = 0;
+  int opcion;
+  
+  do { //Crear el ciclo o acción
+      cout <<"\n===== BIENVENIDO ====="<< endl;
+      cout <<"1. Iniciar sesion"<< endl;
+      cout <<"2. Registrarse "<< endl;
+      cout <<"3. Salir "<< endl;
+      cout <<"Seleccione una opcion: ";
+      cin >> opcion;
+      
+      switch(opcion){
+          
+          case 1: {
+              if(nombreGuardado == ""){
+                  cout << "\nNo hay usuarios registrados.\n";
+                  break; //Quita el ciclo del Switch o case
+              }
+              
+              string nombre, contraseña;
+              int intentos = 0; //Numero de intentos hechos
+              bool acceso = false; //Identificar si es falso
+              
+              //Iniciar sesión
+              while(intentos <3){ //Límite de intentos
+                  cout <<"Ingrese nombre: "; //Mostrar el mensaje en pantalla
+                  cin >> nombre; //Leer los datos que se escriban como el nombre
+                  cout <<"Ingrese contrasena: ";
+                  cin >> contraseña;
+                  bool encontrado = false;
+                  //Buscar el arreglo
+                  for(int i = 0; i < totalUsuarios; i++){
+                      if(nombre == usuarios[i] && contraseña == contraseñas[i]){
+                          encontrado = true;
+                          break;
+                      }
+                  }
+                  
+                  if(encontrado){
+                      cout <<"\nAcceso correcto\n";
+                      acceso = true;
+                      break;
+                  } else {
+                      cout <<"\nDatos incorrectos\n";
+                      intentos++;
+                  }
+              }
+              
+              if(!acceso){
+                  cout <<"\nSe alcanzaron 3 intentos. Regresando a Bienvenidos...\n";
+              }
+                  break;
+              }
+               //Registro
+              case 2:{
+              cout <<"\n=== REGISTRO ==="<< endl;
+              cout <<"Ingrese nombre: ";
+              cin >> nombreGuardado;
+              cout <<"Ingrese contrasena: ";
+              cin >> contraseñaGuardada;
+              
+              //Guardar el usuario y la contraseña en el arreglo
+              if(totalUsuarios < 10){
+                  
+                  usuarios[totalUsuarios]= nombreGuardado;
+                  contraseñas[totalUsuarios] = contraseñaGuardada;
+                  
+                  totalUsuarios++;
+              }
+              else{
+                  cout << "Se alcanzó el limite de 10 usuarios\n";
+              }
+              cout <<"\nRegistro exitoso.Regresando a Bienvenidos...\n";
+              break;
+              }
+              
+              //Finalizar programa
+              case 3:
+              cout <<"\nSaliendo del programa...\n";
+              break;
+              
+              default:
+              cout <<"\nOpcion invalida\n"; //Cuando hay error va a mandar mensaje de opción inválida
+          }
+          
+      } while(opcion != 3);
+      
+      return 0; //Fin programa
+  }
